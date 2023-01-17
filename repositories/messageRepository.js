@@ -82,7 +82,7 @@ const getChats = async (page, limit) => {
     return foundChats;
 }
 
-const search = (customer, page) => {
+const search = async (customer, page) => {
     const foundChats = await Message.aggregate([
         {
             $lookup: {

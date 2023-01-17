@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config()
 
-const connection_url = process.env.CONNECTION_URL || 'mongodb://127.0.0.1:27017/asman-Chat';
+const connection_url = process.env.CONNECTION_URL || 'mongodb://127.0.0.1:27017/asmanChatApptest';
 
 const mongoOption = {
     useNewUrlParser: true,

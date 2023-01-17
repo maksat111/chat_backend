@@ -4,7 +4,7 @@ const Customer = require('../models/customers');
 const fetch = require('node-fetch-commonjs');
 const customerRepository = require('../repositories/customerRepository');
 const messageRepository = require('../repositories/messageRepository');
-const adminRepository = require('../repositories/adminRepository');
+const adminRepository = require('../repositories/adminRepesitory');
 
 const sendMessage = async (req, res) => {
     const { customer_id, message, meta } = req.body;
@@ -89,7 +89,7 @@ const getExactMessage = async (req, res) => {
 
         const startIndex = limit * (page - 1);
 
-        await adminRepository.readMessages();
+        await adminRepository.readMessages(room_id);
 
         const foundMessages = await adminRepository.findMessages(room_id, startIndex, limit);
 
@@ -100,6 +100,7 @@ const getExactMessage = async (req, res) => {
             data: foundMessages
         });
     } catch (err) {
+        console.log(err)
         res.status(500).json({
             success: 0,
             message: err.message
@@ -221,7 +222,7 @@ const deleteMessage = async (req, res) => {
                 message: "Message not deleted!"
             });
         }
-        
+
         res.status(200).json({
             success: 1,
             message: "Message deleted!"

@@ -14,6 +14,7 @@ const customerAuth = async (req, res, next) => {
 
         fetch(`${process.env.API_URL}/auth/me`, fetchOptions).then(async data => {
             const jsonData = await data.json();
+            console.log(jsonData)
 
             if (!data.ok) {
                 return res.status(data.status).json(jsonData);

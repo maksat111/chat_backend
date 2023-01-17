@@ -82,7 +82,7 @@ const getChats = async (page, limit) => {
     return foundChats;
 }
 
-const search = (customer, page) => {
+const search = async (customer, page) => {
     const foundChats = await Message.aggregate([
         {
             $lookup: {
@@ -171,7 +171,7 @@ const countUnread = async () => {
     return unread;
 }
 
-const readMessages = async () => {
+const readMessages = async (room_id) => {
     await Message.updateMany({
         room_id,
         "sender.type": "customer"
@@ -192,7 +192,7 @@ const findMessages = async (room_id, startIndex, limit) => {
     return foundMessages;
 }
 
-const findOneCustomer = (room_id) => {
+const findOneCustomer = async (room_id) => {
     let foundCustomer = await Customer.findOne({
         id: room_id
     });
